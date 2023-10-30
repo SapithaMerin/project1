@@ -1,0 +1,46 @@
+{% include 'home/frontpage.html'%}
+
+<div class="card shadow m-5" style="width:50%">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="border-bottom : 2px solid orange">Employee Login</h5>
+        <div class="container-fluid">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label style="font-weight : bold"> Email ID</label>
+                            <input type="email" name="emailid" class="form-control" placeholder="Enter Your Email ID" required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label style="font-weight : bold">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter Password"  required>
+                        </div>
+                    </div>
+
+
+
+
+                    <br>
+                            <input type="submit" value="Login" class="m-2 px-3 btn btn-primary">
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Logged In Successfully');
+    window.location = ('{% url 'emp_home' %}');
+</script>
+{% endif %}
+{% if  error == "yes" %}
+<script>
+    alert('Invalid Login Credentials, Try Again..');
+</script>
+{% endif %}
